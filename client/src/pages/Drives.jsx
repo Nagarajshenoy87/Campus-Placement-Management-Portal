@@ -93,12 +93,24 @@ function Drives() {
               <td>{drive.deadline}</td>
 
               <td>
-                <button
-                  className="btn btn-success"
-                  onClick={() => applyDrive(drive)}
-                >
-                  Apply
-                </button>
+                {new Date() >
+                  new Date(
+                    drive.deadline.split("-").reverse().join("-")
+                  ) ? (
+                  <button
+                    className="btn btn-secondary"
+                    disabled
+                  >
+                    Expired
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-success"
+                    onClick={() => applyDrive(drive)}
+                  >
+                    Apply
+                  </button>
+                )}
               </td>
             </tr>
           ))}

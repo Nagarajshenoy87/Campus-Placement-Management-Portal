@@ -37,7 +37,9 @@ function AddDrive() {
   return (
     <div className="container mt-5">
       <div className="card p-4 shadow">
-        <h2>Add Drive</h2>
+        <h2 className="text-dark text-center mb-4">
+          Add Drive
+        </h2>
 
         <input
           type="text"

@@ -50,21 +50,68 @@ function MyApplications() {
               <td>{app.jobRole}</td>
 
               <td>
-                <span
-                  className={`badge ${
-                    app.status === "Selected"
-                      ? "bg-success"
-                      : app.status === "Rejected"
-                      ? "bg-danger"
-                      : app.status === "Interview"
-                      ? "bg-warning text-dark"
-                      : app.status === "Shortlisted"
-                      ? "bg-info text-dark"
-                      : "bg-primary"
-                  }`}
-                >
-                  {app.status}
-                </span>
+                <div>
+                  <span
+                    className={`badge ${app.status === "Selected"
+                        ? "bg-success"
+                        : app.status === "Rejected"
+                          ? "bg-danger"
+                          : app.status === "Interview"
+                            ? "bg-warning text-dark"
+                            : app.status === "Shortlisted"
+                              ? "bg-info text-dark"
+                              : "bg-primary"
+                      }`}
+                  >
+                    {app.status}
+                  </span>
+
+                  <div className="mt-2 small">
+                    {app.status === "Applied" && (
+                      <span>✔ Applied</span>
+                    )}
+
+                    {app.status === "Shortlisted" && (
+                      <>
+                        <span>✔ Applied</span>
+                        <br />
+                        <span>✔ Shortlisted</span>
+                      </>
+                    )}
+
+                    {app.status === "Interview" && (
+                      <>
+                        <span>✔ Applied</span>
+                        <br />
+                        <span>✔ Shortlisted</span>
+                        <br />
+                        <span>✔ Interview</span>
+                      </>
+                    )}
+
+                    {app.status === "Selected" && (
+                      <>
+                        <span>✔ Applied</span>
+                        <br />
+                        <span>✔ Shortlisted</span>
+                        <br />
+                        <span>✔ Interview</span>
+                        <br />
+                        <span>✔ Selected</span>
+                      </>
+                    )}
+
+                    {app.status === "Rejected" && (
+                      <>
+                        <span>✔ Applied</span>
+                        <br />
+                        <span style={{ color: "red" }}>
+                          ✖ Rejected
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </div>
               </td>
             </tr>
           ))}

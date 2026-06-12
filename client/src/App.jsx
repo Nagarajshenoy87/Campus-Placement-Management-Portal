@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 
@@ -13,6 +14,7 @@ import Applications from "./pages/Applications";
 import MyApplications from "./pages/MyApplications";
 import AddCompany from "./pages/AddCompany";
 import AddDrive from "./pages/AddDrive";
+import DriveManagement from "./pages/DriveManagement";
 import Profile from "./pages/Profile";
 
 function App() {
@@ -95,7 +97,17 @@ function App() {
             </AdminRoute>
           }
         />
+        <Route
+          path="/drive-management"
+          element={
+            <AdminRoute>
+              <DriveManagement />
+            </AdminRoute>
+          }
+        />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   );
 }

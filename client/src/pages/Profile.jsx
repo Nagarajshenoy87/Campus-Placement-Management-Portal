@@ -98,24 +98,23 @@ function Profile() {
           Student Profile
         </h2>
 
-<h5>Name: {student.name}</h5>
-<h5>Email: {student.email}</h5>
-<h5>Branch: {student.branch}</h5>
-<h5>CGPA: {student.cgpa}</h5>
-<h5>Role: {student.role}</h5>
+        <h5>Name: {student.name}</h5>
+        <h5>Email: {student.email}</h5>
+        <h5>Branch: {student.branch}</h5>
+        <h5>CGPA: {student.cgpa}</h5>
+        <h5>Role: {student.role}</h5>
 
-<h5>
-  Placement Status:{" "}
-  <span
-    className={`badge ms-2 ${
-      student.placementStatus === "Placed"
-        ? "bg-success"
-        : "bg-danger"
-    }`}
-  >
-    {student.placementStatus || "Not Placed"}
-  </span>
-</h5>
+        <h5>
+          Placement Status:{" "}
+          <span
+            className={`badge ms-2 ${student.placementStatus === "Placed"
+              ? "bg-success"
+              : "bg-danger"
+              }`}
+          >
+            {student.placementStatus || "Not Placed"}
+          </span>
+        </h5>
 
         <hr />
 
@@ -159,14 +158,24 @@ function Profile() {
         </button>
 
         {resumeFile && (
-          <a
-            href={`http://localhost:5000/uploads/resumes/${resumeFile}`}
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-primary"
-          >
-            View Resume
-          </a>
+          <>
+            <a
+              href={`http://localhost:5000/uploads/resumes/${resumeFile}`}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-primary me-2"
+            >
+              View Resume
+            </a>
+
+            <a
+              href={`http://localhost:5000/uploads/resumes/${resumeFile}`}
+              download
+              className="btn btn-dark"
+            >
+              Download Resume
+            </a>
+          </>
         )}
       </div>
     </div>

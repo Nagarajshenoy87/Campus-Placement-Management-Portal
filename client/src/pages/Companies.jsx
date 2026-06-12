@@ -32,40 +32,68 @@ function Companies() {
   );
 
   return (
-    <div className="container mt-4">
-      <h2>Companies</h2>
+    <div className="container mt-5">
+
+      <div className="text-center mb-4">
+        <h1 className="fw-bold text-primary">
+          Companies
+        </h1>
+
+        <p className="text-muted">
+          Explore available companies and job opportunities.
+        </p>
+      </div>
 
       <input
         type="text"
-        className="form-control mt-3 mb-3"
-        placeholder="Search Company or Role..."
+        className="form-control shadow-sm mb-4"
+        placeholder="🔍 Search Company or Role..."
         value={search}
         onChange={(e) =>
           setSearch(e.target.value)
         }
       />
 
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th>Package</th>
-            <th>Min CGPA</th>
-            <th>Role</th>
-          </tr>
-        </thead>
+      <div className="card shadow border-0">
+        <div className="card-body">
 
-        <tbody>
-          {filteredCompanies.map((company) => (
-            <tr key={company._id}>
-              <td>{company.companyName}</td>
-              <td>{company.package} LPA</td>
-              <td>{company.minCGPA}</td>
-              <td>{company.jobRole}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <table className="table table-hover table-striped align-middle">
+            <thead className="table-dark">
+              <tr>
+                <th>Company</th>
+                <th>Package</th>
+                <th>Min CGPA</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {filteredCompanies.length > 0 ? (
+                filteredCompanies.map((company) => (
+                  <tr key={company._id}>
+                    <td>{company.companyName}</td>
+                    <td>{company.package} LPA</td>
+                    <td>{company.minCGPA}</td>
+                    <td>{company.jobRole}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan="4"
+                    className="text-center text-danger fw-bold"
+                  >
+                    No Companies Found
+                  </td>
+                </tr>
+              )}
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>
+
     </div>
   );
 }

@@ -32,6 +32,17 @@ const applyDrive = async (req, res) => {
         message: "Drive not found",
       });
     }
+    const today = new Date();
+
+    const deadline = new Date(
+      drive.deadline.split("-").reverse().join("-")
+    );
+
+    if (today > deadline) {
+      return res.status(400).json({
+        message: "Drive Application Closed",
+      });
+    }
 
     if (student.cgpa < drive.minCGPA) {
       return res.status(400).json({
@@ -100,7 +111,6 @@ const updateApplicationStatus = async (
         { new: true }
       );
 
-    // Auto update placement status
     if (status === "Selected") {
       await Student.findOneAndUpdate(
         {
@@ -162,9 +172,33 @@ const exportApplications = async (req, res) => {
   }
 };
 
+// Get Resume By Email
+const getResumeByEmail = async (req, res) => {
+  try {
+    const student = await Student.findOne({
+      email: req.params.email,
+    });
+
+    if (!student || !student.resume) {
+      return res.status(404).json({
+        message: "Resume not found",
+      });
+    }
+
+    return res.redirect(
+      `http://localhost:5000/uploads/resumes/${student.resume}`
+    );
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   applyDrive,
   getApplications,
   updateApplicationStatus,
   exportApplications,
+  getResumeByEmail,
 };

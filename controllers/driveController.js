@@ -4,6 +4,7 @@ const Drive = require("../models/Drive");
 const addDrive = async (req, res) => {
   try {
     const drive = new Drive(req.body);
+
     await drive.save();
 
     res.status(201).json({
@@ -30,7 +31,44 @@ const getDrives = async (req, res) => {
   }
 };
 
+// Update Drive
+const updateDrive = async (req, res) => {
+  try {
+    const drive = await Drive.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+
+    res.status(200).json({
+      message: "Drive Updated Successfully",
+      drive,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
+// Delete Drive
+const deleteDrive = async (req, res) => {
+  try {
+    await Drive.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      message: "Drive Deleted Successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   addDrive,
   getDrives,
+  updateDrive,
+  deleteDrive,
 };

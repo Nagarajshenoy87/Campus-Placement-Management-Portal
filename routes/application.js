@@ -6,6 +6,7 @@ const {
   getApplications,
   updateApplicationStatus,
   exportApplications,
+  getResumeByEmail,
 } = require("../controllers/applicationController");
 
 router.post("/application", applyDrive);
@@ -20,6 +21,11 @@ router.put(
 router.get(
   "/application/export",
   exportApplications
+);
+
+router.get(
+  "/application/resume/:email",
+  getResumeByEmail
 );
 
 module.exports = router;

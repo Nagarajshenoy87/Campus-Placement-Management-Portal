@@ -25,7 +25,7 @@ mongoose
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.log("❌ MongoDB Error:", err));
 
-// Routes
+// API Routes
 app.use("/api", authRoutes);
 app.use("/api", companyRoutes);
 app.use("/api", driveRoutes);
@@ -36,10 +36,12 @@ app.use("/api/resume", resumeRoutes);
 
 // Home Route
 app.get("/", (req, res) => {
-  res.send("Placement Portal Backend Running");
+  res.send("🚀 Placement Portal Backend Running");
 });
 
-// Server
-app.listen(5000, () => {
-  console.log("🚀 Server running on port 5000");
+// Start Server
+const PORT = 5000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
